@@ -104,4 +104,15 @@ class DataHandling {
         }
         return (psiReadings, regions)
     }
+    
+    func loadCachedPsi() -> ([psiReading], [String:CLLocationCoordinate2D]) {
+        if let readings = try? storage?.object(ofType: Array<psiReading>.self, forKey: "psi"), let regions =  try? storage?.object(ofType: Dictionary<String, CLLocationCoordinate2D>.self, forKey: "regions") {
+            if let readings = readings, let regions = regions {
+                log.info("Loading last psi and region values from cache")
+                return (readings, regions)
+            }
+        }
+        log.info("Failed to load last psi and region values from cache")
+        return ([psiReading](),[String:CLLocationCoordinate2D]())
+    }
 }

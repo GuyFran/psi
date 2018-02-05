@@ -44,6 +44,10 @@ class WebServices {
             case .failure(let error):
                 log.error("getPSI API Call failed : \(error.localizedDescription)")
                 
+                //if request was for last, try to fetch the saved last psi
+                if (isLastPSI) {
+                    dataHandling.loadCachedPsi()
+                }
                 
                 postNotification(name: apiCallFailed)
                 return
