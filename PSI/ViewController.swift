@@ -8,7 +8,7 @@
 
 import UIKit
 
-let webservices = WebServices()
+let dataHandling = DataHandling()
 
 class ViewController: UIViewController {
 
@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.navigationItem.title = "application_title".localized()
-        webservices.getPSI(date: nil)
+        dataHandling.loadLastPSI()
         
     }
 

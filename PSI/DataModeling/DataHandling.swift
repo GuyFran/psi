@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+class DataHandling {
+    
+    func loadLastPSI() {
+        self.loadPSI(date: nil)
+        
+    }
+    
+    //YYYY-MM-DD
+    func loadPSI(date:String?) {
+        let webservices = WebServices()
+        webservices.getPSI(date: date)
+    }
+}
