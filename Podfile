@@ -9,14 +9,14 @@ target 'PSI' do
   pod 'Alamofire-SwiftyJSON'
   pod 'SwiftyBeaver'
   pod 'Toast-Swift', '~> 3.0.1'
-  pod 'Quick'
-  pod 'Nimble'
+  #pod 'Quick'
+  #pod 'Nimble'
 
   target 'PSITests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'Quick'
-    pod 'Nimble'
+    #pod 'Quick'
+    #pod 'Nimble'
   end
 
 end
