@@ -21,6 +21,12 @@ class ViewController: UIViewController {
     var refreshBtn: UIButton?
     var warningBtn: UIButton?
     var calendarBtn: UIButton?
+    
+    
+    
+    var isRefreshing = false
+    var isShowingDatePicker = false
+    
     //MARK: Outlets
     
     @IBOutlet var segmentedControl: UISegmentedControl! {
@@ -35,10 +41,31 @@ class ViewController: UIViewController {
     
     @IBOutlet var mapView: MKMapView! {
         didSet {
-            mapView.layer.masksToBounds = true;
-            mapView.layer.cornerRadius = 8; // if you like rounded corners
+            mapView.layer.masksToBounds = true
+            mapView.layer.cornerRadius = 8
             mapView.layer.borderWidth = 0.5
             mapView.layer.borderColor = UIColor.black.cgColor
+        }
+    }
+    
+    @IBOutlet var translucentCache: UIView! {
+        didSet {
+            translucentCache.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.399100598)
+            translucentCache.layer.masksToBounds = true
+            translucentCache.layer.cornerRadius = 8
+        }
+    }
+    
+    
+    @IBOutlet var dateView: UIView!
+    
+    @IBOutlet var datePicker: UIDatePicker! {
+        didSet {
+            datePicker.backgroundColor = UIColor.white
+            datePicker.layer.cornerRadius = 8
+            datePicker.layer.masksToBounds = true
+            datePicker.layer.borderColor = UIColor.black.cgColor
+            datePicker.layer.borderWidth = 1.0
         }
     }
     
@@ -50,25 +77,16 @@ class ViewController: UIViewController {
     
     //
 
-    //MARK: Life Cycle
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         self.navigationItem.title = "application_title".localized()
         self.setupNavBar()
-//        dataHandling.loadLastPSI { (readings, regions) in
-//            //
-//            print(readings)
-//            print(regions)
-//        }
-//
-//        dataHandling.loadPSI(date: "2018-02-04") { (readings, regions) in
-//            //
-//            print(readings)
-//            print(regions)
-//        }
         
+        
+        self.perform(#selector(showWarning), with: nil, afterDelay: 5.0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,9 +97,6 @@ class ViewController: UIViewController {
     
     // MARK: Setup
     
-    @objc func fake() {
-        
-    }
     func setupNavBar() {
         
         /*
@@ -92,12 +107,12 @@ class ViewController: UIViewController {
         
         refreshBtn = UIButton()
         refreshBtn?.setImage(UIImage(named: "refresh.png"), for: .normal)
-        refreshBtn?.addTarget(self, action: #selector(fake), for: .touchUpInside)
+        refreshBtn?.addTarget(self, action: #selector(refreshClick), for: .touchUpInside)
         let barItem = UIBarButtonItem(customView: refreshBtn!)
         
         calendarBtn = UIButton()
         calendarBtn?.setImage(UIImage(named: "calendar2 copy.png"), for: .normal)
-        calendarBtn?.addTarget(self, action: #selector(fake), for: .touchUpInside)
+        calendarBtn?.addTarget(self, action: #selector(toggleDatePicker), for: .touchUpInside)
         let barItem2 = UIBarButtonItem(customView: calendarBtn!)
         
         warningBtn = UIButton()
@@ -122,21 +137,49 @@ class ViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItems = [barItem, barItem2]
         self.navigationItem.rightBarButtonItem = barItem3
+        
+        warningBtn?.isHidden = true
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
+    
+    @objc func refreshClick() {
+        if isShowingDatePicker || self.isRefreshing {
+            return
+        }
+        
+        showProgress()
+    }
+    
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
     }
     
-    // MARK: Animations
+    @IBAction func datePickerValueChanged(_ sender: Any) {
+    }
+    
+    // MARK: - Animations
+    
+    
     func showProgress() {
+        self.showCache()
         self.startRefreshAnimation()
     }
     
     func hideProgress() {
+        self.hideCache()
         self.stopRefreshAnimation()
     }
+    
+    
+    func showCache() {
+        self.translucentCache.isHidden = false
+    }
+    
+    func hideCache() {
+        self.translucentCache.isHidden = true
+    }
+
     
     func startRefreshAnimation() {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
@@ -169,14 +212,53 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func showDatePicker() {
+    @objc func toggleDatePicker() {
+        if self.isRefreshing {
+            return
+        }
         
+        if self.isShowingDatePicker {
+            hideDatePicker()
+        } else {
+            showDatePicker()
+        }
+    }
+    
+    @objc func showDatePicker() {
+        self.isShowingDatePicker = true
+        
+        self.datePicker.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.dateView.isHidden = false
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 6.0, options: .allowUserInteraction, animations: {
+            //
+            self.datePicker.transform = .identity
+        }) { (completed) in
+            //
+        }
     }
     
     @objc func hideDatePicker() {
         
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.datePicker.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        }) { (completed) in
+            self.dateView.isHidden = true
+            self.isShowingDatePicker = false
+        }
+//
+//
+//        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.0, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+//            //
+//            self.dateView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+//        }) { (completed) in
+//            //
+//            self.dateView.isHidden = true
+//            self.isShowingDatePicker = false
+//        }
     }
     
-
+    
+    
 }
 
