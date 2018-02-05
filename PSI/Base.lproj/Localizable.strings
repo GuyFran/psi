@@ -19,3 +19,5 @@
 "last" = "Last";
 "3hr" = "3-HR";
 "24hr" = "24-HR";
+
+"apiFailed" = "Error fetching the data";

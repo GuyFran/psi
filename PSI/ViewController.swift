@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Charts
+import Toast_Swift
 
 let dataHandling = DataHandling()
 
@@ -129,6 +130,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         self.setupNavBar()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showWarning), name: NSNotification.Name(rawValue: apiCallWarningStatus), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showToast), name: NSNotification.Name(rawValue: apiCallFailed), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -381,7 +383,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
             if (readings.count == 1) {
                 self.lastReading = readings[0]
             } else {
-                log.error("More than 1 record for last PSI!")
+                log.error("More than 1 record for last PSI or no record found!")
             }
             
             self.regions = regions
@@ -412,6 +414,9 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
     
     // MARK: - Animations
     
+    @objc func showToast() {
+        self.view.makeToast("apiFailed".localized(), duration: 0.5, position: .top)
+    }
     
     func showProgress() {
         self.showCache()

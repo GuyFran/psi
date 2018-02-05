@@ -19,3 +19,5 @@
 "last" = "Dernier";
 "3hr" = "3-HR";
 "24hr" = "24-HR";
+
+"apiFailed" = "Donnees non recuperees";

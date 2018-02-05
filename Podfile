@@ -11,9 +11,8 @@ target 'PSI' do
   pod 'Toast-Swift', '~> 3.0.1'
   pod 'Cache'
   pod 'Charts'
-  #pod 'Quick'
-  #pod 'Nimble'
-
+  pod 'Toast-Swift', '~> 3.0.1'
+  
   target 'PSITests' do
     inherit! :search_paths
     # Pods for testing
