@@ -114,6 +114,7 @@
                         <constraints>
                             <constraint firstItem="Oo7-cU-tXL" firstAttribute="centerX" secondItem="6Rm-tP-sCz" secondAttribute="centerX" id="0Wd-2d-q6J"/>
                             <constraint firstItem="v7c-3F-VhP" firstAttribute="top" secondItem="cQr-Zo-Ndf" secondAttribute="top" constant="10" id="0Yk-Jp-dgR"/>
+                            <constraint firstItem="XXV-T8-cn0" firstAttribute="bottom" secondItem="v7c-3F-VhP" secondAttribute="bottom" constant="10" id="Bzx-nT-FVt"/>
                             <constraint firstItem="2KA-Y6-JsA" firstAttribute="centerX" secondItem="6Rm-tP-sCz" secondAttribute="centerX" id="FlN-cv-y3O"/>
                             <constraint firstItem="KEb-0T-uK1" firstAttribute="width" secondItem="v7c-3F-VhP" secondAttribute="width" id="Gjn-Hh-VY9"/>
                             <constraint firstItem="iqd-LY-8uC" firstAttribute="centerY" secondItem="v7c-3F-VhP" secondAttribute="centerY" id="IID-t9-z0u"/>
@@ -121,7 +122,6 @@
                             <constraint firstAttribute="bottom" secondItem="Opm-0q-pOF" secondAttribute="bottom" id="KRJ-zB-F78"/>
                             <constraint firstItem="v7c-3F-VhP" firstAttribute="leading" secondItem="cQr-Zo-Ndf" secondAttribute="leading" constant="10" id="Mbu-HX-uRQ"/>
                             <constraint firstItem="iqd-LY-8uC" firstAttribute="width" secondItem="v7c-3F-VhP" secondAttribute="width" id="Qt4-Yk-Mmh"/>
-                            <constraint firstItem="XXV-T8-cn0" firstAttribute="bottom" secondItem="Opm-0q-pOF" secondAttribute="top" constant="10" id="UgE-Db-3uH"/>
                             <constraint firstAttribute="trailing" secondItem="Opm-0q-pOF" secondAttribute="trailing" id="Uzz-ti-fDS"/>
                             <constraint firstItem="XXV-T8-cn0" firstAttribute="trailing" secondItem="v7c-3F-VhP" secondAttribute="trailing" id="ccz-S8-Nnq"/>
                             <constraint firstItem="XXV-T8-cn0" firstAttribute="height" secondItem="v7c-3F-VhP" secondAttribute="height" multiplier="0.3" id="dh9-Ac-oJP"/>
