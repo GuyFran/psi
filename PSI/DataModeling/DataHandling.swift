@@ -13,19 +13,20 @@ import CoreLocation
 
 class DataHandling {
     
-    func loadLastPSI() {
-        self.loadPSI(date: nil)
-        
+    func loadLastPSI(completion:@escaping  ([psiReading], [String:CLLocationCoordinate2D]) -> ()) {
+        self.loadPSI(date: nil, completion: completion)
     }
     
     //YYYY-MM-DD
-    func loadPSI(date:String?) {
+    func loadPSI(date:String?, completion: @escaping ([psiReading], [String:CLLocationCoordinate2D]) -> ()) {
         let webservices = WebServices()
-        webservices.getPSI(date: date)
+        
+        webservices.getPSI(date: date, completion: completion)
     }
     
     //response handling
-    func mapResponse(receivedJSON:JSON, isLastPSIRequest: Bool) -> ([psiReading], [String:CLLocationCoordinate2D]) {
+    func mapResponse(receivedJSON:JSON, isLastPSIRequest: Bool, completion:([psiReading], [String:CLLocationCoordinate2D]) -> ()) {
+        
         
         
         let items = receivedJSON["items"]
@@ -102,17 +103,19 @@ class DataHandling {
             regions[name.stringValue] = coordinate
             
         }
-        return (psiReadings, regions)
+        
+        
+        completion(psiReadings, regions)
     }
     
-    func loadCachedPsi() -> ([psiReading], [String:CLLocationCoordinate2D]) {
+    func loadCachedPsi(completion:([psiReading], [String:CLLocationCoordinate2D]) -> ()) {
         if let readings = try? storage?.object(ofType: Array<psiReading>.self, forKey: "psi"), let regions =  try? storage?.object(ofType: Dictionary<String, CLLocationCoordinate2D>.self, forKey: "regions") {
             if let readings = readings, let regions = regions {
                 log.info("Loading last psi and region values from cache")
-                return (readings, regions)
+                completion(readings, regions)
             }
         }
         log.info("Failed to load last psi and region values from cache")
-        return ([psiReading](),[String:CLLocationCoordinate2D]())
+        completion([psiReading](), [String:CLLocationCoordinate2D]())
     }
 }

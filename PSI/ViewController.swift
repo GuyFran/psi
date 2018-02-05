@@ -17,7 +17,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.navigationItem.title = "application_title".localized()
-        dataHandling.loadLastPSI()
+        dataHandling.loadLastPSI { (readings, regions) in
+            //
+            print(readings)
+            print(regions)
+        }
         
     }
 

@@ -19,13 +19,15 @@ class WebServices {
     
     //fetch PSI Json and gives back the array of readings and the regions metadata
     //date in format YYYY-MM-DD
-    func getPSI(date:String?) {
+    //YYYY-MM-DD
+    func getPSI(date:String?, completion: @escaping  ([psiReading], [String:CLLocationCoordinate2D]) -> ()) {
         
         
         //target URL
         guard let apiURL = URL(string: kBASE_URL) else {
             log.error("getPSI API Call failed : wrong base url")
             postNotification(name: apiCallFailed)
+            completion([psiReading](), [String:CLLocationCoordinate2D]())
             return
         }
         
@@ -46,10 +48,11 @@ class WebServices {
                 
                 //if request was for last, try to fetch the saved last psi
                 if (isLastPSI) {
-                    dataHandling.loadCachedPsi()
+                    dataHandling.loadCachedPsi(completion: completion)
                 }
                 
                 postNotification(name: apiCallFailed)
+                completion([psiReading](), [String:CLLocationCoordinate2D]())
                 return
             case .success(let json):
                 print("JSON: \(json)")
@@ -58,12 +61,8 @@ class WebServices {
                 
                 
                 dataHandling.mapResponse(receivedJSON: json,
-                                        isLastPSIRequest: isLastPSI)
-                
-                
+                                        isLastPSIRequest: isLastPSI, completion: completion)
             }
-            
-            
         }
     }
     
