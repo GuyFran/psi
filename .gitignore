@@ -218,3 +218,37 @@ Pods/Target Support Files/Toast-Swift/Toast-Swift.xcconfig
 Pods/Toast-Swift/LICENSE
 Pods/Toast-Swift/README.md
 Pods/Toast-Swift/Toast/Toast.swift
+Pods/Cache/LICENSE.md
+Pods/Cache/README.md
+Pods/Cache/Source/iOS/UIImage+Extensions.swift
+Pods/Cache/Source/Shared/Configuration/DiskConfig.swift
+Pods/Cache/Source/Shared/Configuration/MemoryConfig.swift
+Pods/Cache/Source/Shared/Extensions/Date+Extensions.swift
+Pods/Cache/Source/Shared/Extensions/JSONDecoder+Extensions.swift
+Pods/Cache/Source/Shared/Library/DataSerializer.swift
+Pods/Cache/Source/Shared/Library/Entry.swift
+Pods/Cache/Source/Shared/Library/ExpirationMode.swift
+Pods/Cache/Source/Shared/Library/Expiry.swift
+Pods/Cache/Source/Shared/Library/ImageWrapper.swift
+Pods/Cache/Source/Shared/Library/JSONArrayWrapper.swift
+Pods/Cache/Source/Shared/Library/JSONDictionaryWrapper.swift
+Pods/Cache/Source/Shared/Library/MD5.swift
+Pods/Cache/Source/Shared/Library/Result.swift
+Pods/Cache/Source/Shared/Library/StorageError.swift
+Pods/Cache/Source/Shared/Library/Types.swift
+Pods/Cache/Source/Shared/Storage/AsyncStorage.swift
+Pods/Cache/Source/Shared/Storage/AsyncStorageAware.swift
+Pods/Cache/Source/Shared/Storage/DiskStorage.swift
+Pods/Cache/Source/Shared/Storage/HybridStorage.swift
+Pods/Cache/Source/Shared/Storage/MemoryStorage.swift
+Pods/Cache/Source/Shared/Storage/Storage.swift
+Pods/Cache/Source/Shared/Storage/StorageAware.swift
+Pods/Cache/Source/Shared/Storage/SyncStorage.swift
+Pods/Cache/Source/Shared/Storage/TypeWrapperStorage.swift
+Pods/Pods.xcodeproj/xcuserdata/guynemer.xcuserdatad/xcschemes/Cache.xcscheme
+Pods/Target Support Files/Cache/Cache-dummy.m
+Pods/Target Support Files/Cache/Cache-prefix.pch
+Pods/Target Support Files/Cache/Cache-umbrella.h
+Pods/Target Support Files/Cache/Cache.modulemap
+Pods/Target Support Files/Cache/Cache.xcconfig
+Pods/Target Support Files/Cache/Info.plist

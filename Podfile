@@ -9,6 +9,7 @@ target 'PSI' do
   pod 'Alamofire-SwiftyJSON'
   pod 'SwiftyBeaver'
   pod 'Toast-Swift', '~> 3.0.1'
+  pod 'Cache'
   #pod 'Quick'
   #pod 'Nimble'
 
