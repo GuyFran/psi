@@ -27,7 +27,15 @@ class DataHandling {
     //response handling
     func mapResponse(receivedJSON:JSON, isLastPSIRequest: Bool, completion:([psiReading], [String:CLLocationCoordinate2D]) -> ()) {
         
-        
+        //check for api status
+        let status = receivedJSON["api_info"]["status"]
+        if status.exists() {
+            if status.stringValue != "health" {
+                postNotification(name: apiCallWarningStatus)
+            }
+        } else {
+            log.warning("API Status uncertain")
+        }
         
         let items = receivedJSON["items"]
         //print(items)
