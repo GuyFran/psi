@@ -18,6 +18,9 @@ class ViewController: UIViewController {
     let calendarImageView = UIImageView(image: UIImage(named: "calendar2 copy.png"))
     let warningImageView = UIImageView(image: UIImage(named: "warning.png"))
     
+    var refreshBtn: UIButton?
+    var warningBtn: UIButton?
+    var calendarBtn: UIButton?
     //MARK: Outlets
     
     @IBOutlet var segmentedControl: UISegmentedControl! {
@@ -87,20 +90,20 @@ class ViewController: UIViewController {
         let warningImageView = UIImageView(image: UIImage(named: "warning.png"))
         */
         
-        let button = UIButton()
-        button.setImage(UIImage(named: "refresh.png"), for: .normal)
-        button.addTarget(self, action: #selector(fake), for: .touchUpInside)
-        let barItem = UIBarButtonItem(customView: button)
+        refreshBtn = UIButton()
+        refreshBtn?.setImage(UIImage(named: "refresh.png"), for: .normal)
+        refreshBtn?.addTarget(self, action: #selector(fake), for: .touchUpInside)
+        let barItem = UIBarButtonItem(customView: refreshBtn!)
         
-        let button2 = UIButton()
-        button2.setImage(UIImage(named: "calendar2 copy.png"), for: .normal)
-        button2.addTarget(self, action: #selector(fake), for: .touchUpInside)
-        let barItem2 = UIBarButtonItem(customView: button2)
+        calendarBtn = UIButton()
+        calendarBtn?.setImage(UIImage(named: "calendar2 copy.png"), for: .normal)
+        calendarBtn?.addTarget(self, action: #selector(fake), for: .touchUpInside)
+        let barItem2 = UIBarButtonItem(customView: calendarBtn!)
         
-        let button3 = UIButton()
-        button3.setImage(UIImage(named: "warning.png"), for: .normal)
-        button3.isUserInteractionEnabled = false
-        let barItem3 = UIBarButtonItem(customView: button3)
+        warningBtn = UIButton()
+        warningBtn?.setImage(UIImage(named: "warning.png"), for: .normal)
+        warningBtn?.isUserInteractionEnabled = false
+        let barItem3 = UIBarButtonItem(customView: warningBtn!)
         
         let width = barItem.customView?.widthAnchor.constraint(equalToConstant: 22)
         width?.isActive = true
@@ -124,6 +127,54 @@ class ViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
+    }
+    
+    // MARK: Animations
+    func showProgress() {
+        self.startRefreshAnimation()
+    }
+    
+    func hideProgress() {
+        self.stopRefreshAnimation()
+    }
+    
+    func startRefreshAnimation() {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(Double.pi * 2.0)
+        rotateAnimation.duration = 1.0
+        rotateAnimation.repeatCount = .infinity
+        self.refreshBtn?.layer.add(rotateAnimation, forKey: nil)
+    }
+    
+    func stopRefreshAnimation() {
+        self.refreshBtn?.layer.removeAllAnimations()
+    }
+    
+    @objc func showWarning() {
+        self.warningBtn?.alpha = 0.0
+        self.warningBtn?.isHidden = false
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: .calculationModeCubicPaced, animations: {
+            //
+            self.warningBtn!.alpha = 1.0
+        }) { (completed) in
+            //
+            UIView.animateKeyframes(withDuration: 0.5, delay: 2.0, options: .calculationModeCubicPaced, animations: {
+                self.warningBtn?.alpha = 0.0
+            }, completion: { (completed) in
+                //
+                self.warningBtn?.alpha = 0.0
+                self.warningBtn?.isHidden = true
+            })
+        }
+    }
+    
+    @objc func showDatePicker() {
+        
+    }
+    
+    @objc func hideDatePicker() {
+        
     }
     
 
