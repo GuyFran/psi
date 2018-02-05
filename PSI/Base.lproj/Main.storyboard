@@ -98,8 +98,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oo7-cU-tXL">
-                                <rect key="frame" x="172" y="285.33333333333337" width="31" height="14.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oo7-cU-tXL">
+                                <rect key="frame" x="187.66666666666666" y="285.33333333333337" width="0.0" height="14.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -137,6 +137,7 @@
                         <outlet property="mapView" destination="v7c-3F-VhP" id="T8U-2H-T58"/>
                         <outlet property="segmentedControl" destination="2KA-Y6-JsA" id="7hA-U5-CZx"/>
                         <outlet property="translucentCache" destination="KEb-0T-uK1" id="6Kg-au-Z2e"/>
+                        <outlet property="updateTimeTxt" destination="Oo7-cU-tXL" id="5ix-hJ-JdB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wM4-e8-SFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
