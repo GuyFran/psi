@@ -138,6 +138,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         
         //initial load for current values
         self.refreshLastReading()
+        self.focusOnSingapore()
     }
     
     
@@ -195,6 +196,13 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         calendarBtn?.isEnabled = false
     }
     
+    func focusOnSingapore() {
+        let singapore = CLLocationCoordinate2D(latitude: 1.280270, longitude: 103.851959)
+        
+        let viewRegion = MKCoordinateRegionMakeWithDistance(singapore, 50000, 50000)
+        let adjustedRegion = self.mapView.regionThatFits(viewRegion)
+        self.mapView.setRegion(adjustedRegion, animated: true)
+    }
     
     // MARK: - Actions
     
@@ -259,7 +267,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
             self.mapView.deselectAnnotation(annotation, animated: false)
             self.mapView.selectAnnotation(annotation, animated: false)
             let castedAnnotation = annotation as? MyAnnotation
-            print("Selected annotation \(castedAnnotation?.region)")
+            //print("Selected annotation \(castedAnnotation?.region)")
             self.currentRegion  = castedAnnotation?.region
         }
         //
@@ -327,7 +335,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
             let reading = readings[i]
             guard let timestamp = reading.timestamp else { return BarChartDataEntry(x: Double(0), y: 0)}
             let hour = calendar.component(.hour, from: timestamp)
-            print("hour : \(hour)")
+            //print("hour : \(hour)")
             let value = { () -> Int in
                 guard let currentRegion = self.currentRegion else
                 { print("national")
@@ -517,7 +525,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
             let selected = self.mapView.selectedAnnotations
             for annotation in selected {
                 let castedAnnotation = annotation as? MyAnnotation
-                print("Selected annotation \(castedAnnotation?.region)")
+                //print("Selected annotation \(castedAnnotation?.region)")
                 self.currentRegion  = castedAnnotation?.region
             }
             //
@@ -565,6 +573,19 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         }
     }
     
+    
+    // MARK: - viewSizeChanges
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { (_) in
+            //
+            self.focusOnSingapore()
+        }) { (_) in
+            //
+            self.focusOnSingapore()
+        }
+    }
     
 }
 
