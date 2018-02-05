@@ -16,4 +16,14 @@ fileprivate let kBASE_URL:String = "https://api.data.gov.sg/v1/environment/psi"
 
 class WebServices {
     
+    
+    
+    
+    //neet to provide API KEY
+    func buildHeader() -> HTTPHeaders {
+        var headers = HTTPHeaders()
+        headers["api-key"] = kAPI_KEY
+        
+        return headers
+    }
 }
