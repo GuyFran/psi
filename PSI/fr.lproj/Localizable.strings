@@ -13,3 +13,9 @@
 "east" = "Est";
 "west" = "Ouest";
 "central" = "Central";
+
+"update_time" = "Mise a jour";
+
+"last" = "Dernier";
+"3hr" = "3-HR";
+"24hr" = "24-HR";

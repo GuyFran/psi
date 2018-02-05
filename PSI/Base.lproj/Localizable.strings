@@ -13,3 +13,9 @@
 "east" = "East";
 "west" = "West";
 "central" = "Central";
+
+"update_time" = "Update Time";
+
+"last" = "Last";
+"3hr" = "3-HR";
+"24hr" = "24-HR";
