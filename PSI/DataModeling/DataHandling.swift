@@ -94,13 +94,18 @@ class DataHandling {
         completion(psiReadings, regions)
     }
     
+    //back up method to load cached info in case api call fails
     func loadCachedPsi(completion:([psiReading], [String:CLLocationCoordinate2D]) -> ()) {
-        if let readings = try? storage?.object(ofType: Array<psiReading>.self, forKey: "psi"), let regions =  try? storage?.object(ofType: Dictionary<String, CLLocationCoordinate2D>.self, forKey: "regions") {
+        
+        if let readings = try? storage?.object(ofType: Array<psiReading>.self, forKey: "psi"),
+            let regions =  try? storage?.object(ofType: Dictionary<String, CLLocationCoordinate2D>.self, forKey: "regions") {
+            
             if let readings = readings, let regions = regions {
                 log.info("Loading last psi and region values from cache")
                 completion(readings, regions)
             }
         }
+        
         log.info("Failed to load last psi and region values from cache")
         completion([psiReading](), [String:CLLocationCoordinate2D]())
     }
