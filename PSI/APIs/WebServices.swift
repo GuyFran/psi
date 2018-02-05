@@ -43,9 +43,11 @@ class WebServices {
             let isLastPSI = !(hasDate ?? false)
             
             switch dataResponse.result {
+                
             case .failure(let error):
                 log.error("getPSI API Call failed : \(error.localizedDescription)")
                 
+                //error
                 //if request was for last, try to fetch the saved last psi
                 if (isLastPSI) {
                     dataHandling.loadCachedPsi(completion: completion)
@@ -55,13 +57,8 @@ class WebServices {
                 completion([psiReading](), [String:CLLocationCoordinate2D]())
                 return
             case .success(let json):
-                print("JSON: \(json)")
-                
-                
-                
-                
                 dataHandling.mapResponse(receivedJSON: json,
-                                        isLastPSIRequest: isLastPSI, completion: completion)
+                                         isLastPSIRequest: isLastPSI, completion: completion)
             }
         }
     }

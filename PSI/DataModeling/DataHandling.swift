@@ -38,15 +38,14 @@ class DataHandling {
         }
         
         let items = receivedJSON["items"]
-        //print(items)
-        var psiReadings = [psiReading]()
         
+        var psiReadings = [psiReading]()
         
         for item in items {
             
             //item is tuple string, Any
             let timestamp = item.1["timestamp"].string
-            let updateTimestamp = item.1["update_timestamp"].string
+            //let updateTimestamp = item.1["update_timestamp"].string
             let itemPsi = item.1["readings"]["psi_twenty_four_hourly"]
             
             let eastPsi = itemPsi.dictionary?["east"]?.int ?? -1
@@ -64,11 +63,11 @@ class DataHandling {
             newReading.psiValueNational = nationalPsi
             newReading.psiValueCentral = centralPsi
             
-            //
-            
+            //date formatting
             let dateFormatter = ISO8601DateFormatter()
             let createdDate = dateFormatter.date(from: timestamp ?? "")
             newReading.timestamp = createdDate
+            
             psiReadings.append(newReading)
         }
         
@@ -77,6 +76,7 @@ class DataHandling {
             try? storage?.setObject(psiReadings, forKey: "psi")
         }
         
+        //handling map regions
         var regions = [String:CLLocationCoordinate2D]()
         let metadata = receivedJSON["region_metadata"]
         for region in metadata {
@@ -87,32 +87,10 @@ class DataHandling {
                 continue
             }
             let coordinate = CLLocationCoordinate2D(latitude: latitude.doubleValue, longitude: longitude.doubleValue)
-            //
-            //            switch name.stringValue {
-            //            case "north":
-            //                regions.north = coordinate
-            //                break
-            //            case "south":
-            //                regions.south = coordinate
-            //                break
-            //            case "east":
-            //            regions.east = coordinate
-            //                break
-            //            case "west":
-            //            regions.west = coordinate
-            //                break
-            //            case "central":
-            //            regions.central = coordinate
-            //                break
-            //            default :
-            //                break
-            //            }
             
             regions[name.stringValue] = coordinate
             
         }
-        
-        
         completion(psiReadings, regions)
     }
     
