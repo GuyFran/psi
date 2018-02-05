@@ -30,7 +30,7 @@ class DataHandling {
         //check for api status
         let status = receivedJSON["api_info"]["status"]
         if status.exists() {
-            if status.stringValue != "health" {
+            if status.stringValue != "healthy" {
                 postNotification(name: apiCallWarningStatus)
             }
         } else {

@@ -127,8 +127,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         self.navigationItem.title = "application_title".localized()
         self.setupNavBar()
         
-        
-        self.perform(#selector(showWarning), with: nil, afterDelay: 5.0)
+        NotificationCenter.default.addObserver(self, selector: #selector(showWarning), name: NSNotification.Name(rawValue: apiCallWarningStatus), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
