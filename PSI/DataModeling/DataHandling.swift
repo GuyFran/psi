@@ -91,6 +91,11 @@ class DataHandling {
             regions[name.stringValue] = coordinate
             
         }
+        //caching last data
+        if (isLastPSIRequest) {
+            try? storage?.setObject(regions, forKey: "regions")
+        }
+        
         completion(psiReadings, regions)
     }
     
