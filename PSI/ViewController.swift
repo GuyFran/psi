@@ -496,6 +496,20 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let pinView = view as? MKPinAnnotationView
         pinView?.pinTintColor = UIColor.red
+        
+        if (viewStyle != .format_last) {
+            
+            //
+            let selected = self.mapView.selectedAnnotations
+            for annotation in selected {
+                let castedAnnotation = annotation as? MyAnnotation
+                print("Selected annotation \(castedAnnotation?.region)")
+                self.currentRegion  = castedAnnotation?.region
+            }
+            //
+            
+            self.updateInfos()
+        }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
