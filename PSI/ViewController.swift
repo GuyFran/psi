@@ -23,6 +23,12 @@ class ViewController: UIViewController {
             print(regions)
         }
         
+        dataHandling.loadPSI(date: "2018-02-04") { (readings, regions) in
+            //
+            print(readings)
+            print(regions)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
