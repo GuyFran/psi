@@ -189,6 +189,8 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         self.navigationItem.rightBarButtonItem = barItem3
         
         warningBtn?.isHidden = true
+        
+        calendarBtn?.isEnabled = false
     }
     
     
@@ -210,12 +212,15 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             viewStyle = .format_last
+            calendarBtn?.isEnabled = false
             self.refreshLastReading()
         case 1:
             viewStyle = .format_3hr
+            calendarBtn?.isEnabled = true
             self.refreshReadingsForSelectedDate()
         case 2:
             viewStyle = .format_24hr
+            calendarBtn?.isEnabled = true
             self.refreshReadingsForSelectedDate()
         default:
             break
@@ -227,6 +232,9 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         self.refreshReadingsForSelectedDate()
     }
     
+    @IBAction func backgroundClicked(_ sender: Any) {
+        self.hideDatePicker()
+    }
     // MARK: -UI Update
     
     func updateUIToViewStyle() {
