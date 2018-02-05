@@ -9,6 +9,7 @@
 import Foundation
 
 let apiCallFailed = "nf_apiCallFailed";
+let apiCallWarningStatus = "nf_apiCallWarningStatus";
 
 func postNotification(name: String) {
     NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: nil)
