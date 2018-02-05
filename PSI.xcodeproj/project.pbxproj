@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B32BB7C50DAF1D246AF59CAC /* Pods_PSI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83799D3CE20D43AB6391C7F9 /* Pods_PSI.framework */; };
+		B33C844820282FFC00585F6F /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C844720282FFC00585F6F /* WebServices.swift */; };
+		B33C844B2028302700585F6F /* DataHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C844A2028302700585F6F /* DataHandling.swift */; };
 		B39332632028275F005E9B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332622028275F005E9B1E /* AppDelegate.swift */; };
 		B39332652028275F005E9B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332642028275F005E9B1E /* ViewController.swift */; };
 		B39332682028275F005E9B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39332662028275F005E9B1E /* Main.storyboard */; };
@@ -33,6 +35,8 @@
 		5D03D388B62FAF428965F71C /* Pods-PSI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSI.release.xcconfig"; path = "Pods/Target Support Files/Pods-PSI/Pods-PSI.release.xcconfig"; sourceTree = "<group>"; };
 		83799D3CE20D43AB6391C7F9 /* Pods_PSI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PSI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C0AA44ACFC9BAEF365186C /* Pods_PSITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PSITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B33C844720282FFC00585F6F /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
+		B33C844A2028302700585F6F /* DataHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandling.swift; sourceTree = "<group>"; };
 		B393325F2028275F005E9B1E /* PSI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B39332622028275F005E9B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B39332642028275F005E9B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +79,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B33C844620282FE300585F6F /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				B33C844720282FFC00585F6F /* WebServices.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		B33C84492028300E00585F6F /* DataModeling */ = {
+			isa = PBXGroup;
+			children = (
+				B33C844A2028302700585F6F /* DataHandling.swift */,
+			);
+			path = DataModeling;
+			sourceTree = "<group>";
+		};
 		B39332562028275F005E9B1E = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +118,8 @@
 		B39332612028275F005E9B1E /* PSI */ = {
 			isa = PBXGroup;
 			children = (
+				B33C84492028300E00585F6F /* DataModeling */,
+				B33C844620282FE300585F6F /* APIs */,
 				B39332622028275F005E9B1E /* AppDelegate.swift */,
 				B39332642028275F005E9B1E /* ViewController.swift */,
 				B39332662028275F005E9B1E /* Main.storyboard */,
@@ -352,8 +374,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B33C844B2028302700585F6F /* DataHandling.swift in Sources */,
 				B39332652028275F005E9B1E /* ViewController.swift in Sources */,
 				B39332632028275F005E9B1E /* AppDelegate.swift in Sources */,
+				B33C844820282FFC00585F6F /* WebServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
