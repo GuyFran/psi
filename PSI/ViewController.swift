@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Charts
 
 let dataHandling = DataHandling()
 
@@ -17,7 +18,7 @@ enum viewFormat {
     case format_24hr
 }
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
     
     //
     var viewStyle = viewFormat.format_last
@@ -90,6 +91,34 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBOutlet var updateTimeTxt: UILabel!
+    
+    @IBOutlet var barChartView: BarChartView! {
+        didSet {
+            barChartView.delegate = self
+            
+            barChartView.chartDescription?.enabled = false
+            barChartView.maxVisibleCount = 60
+            barChartView.pinchZoomEnabled = false
+            barChartView.drawBarShadowEnabled = false
+            
+            let xAxis = barChartView.xAxis
+            xAxis.labelPosition = .bottom
+            xAxis.valueFormatter = XAxisFormatter()
+            //xAxis.granularity = 1
+            xAxis.centerAxisLabelsEnabled = true
+            
+            let leftAxisFormatter = NumberFormatter()
+            leftAxisFormatter.maximumFractionDigits = 1
+            
+            //barChartView.leftAxis.axisMinimum = 0
+            //barChartView.rightAxis.axisMinimum = 0
+            
+            
+            barChartView.legend.enabled = false
+            
+            
+        }
+    }
     //
 
     //MARK: - Life Cycle
@@ -203,8 +232,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     func updateUIToViewStyle() {
         
-        
-        
         //check if call out is allowed or not, set accordingly
         var showCallOut = true
         
@@ -226,6 +253,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
             print("Selected annotation \(castedAnnotation?.region)")
         }
         //
+        
+    
+        //charts
+        self.barChartView.isHidden = true
     }
     
     func updateInfos() {
@@ -244,16 +275,62 @@ class ViewController: UIViewController, MKMapViewDelegate {
             self.mapView.addAnnotations(annotations)
             alreadyDrawnPins = true
         }
+        //
         
         //update txt
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        if let readingTimestamp = lastReading?.timestamp {
-            self.updateTimeTxt.text = "update_time".localized() + ": " + formatter.string(from: readingTimestamp)
+        if (viewStyle == .format_last) {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.timeStyle = .short
+            if let readingTimestamp = lastReading?.timestamp {
+                self.updateTimeTxt.text = "update_time".localized() + ": " + formatter.string(from: readingTimestamp)
+            } else {
+                self.updateTimeTxt.text = "n.a"
+            }
         } else {
-            self.updateTimeTxt.text = "n.a"
+            self.barChartView.isHidden = false
+            self.updateChartData()
+            self.updateTimeTxt.text = ""
         }
+        //
+        
+        
+        
+    }
+    
+    func updateChartData() {
+        guard let readings = self.readings else { return }
+        
+        
+        let calendar = Calendar.current
+        let yVals = (0..<readings.count).map { (i) -> BarChartDataEntry in
+            
+            let reading = readings[i]
+            guard let timestamp = reading.timestamp else { return BarChartDataEntry(x: Double(0), y: 0)}
+            let hour = calendar.component(.hour, from: timestamp)
+            print("hour : \(hour)")
+            return BarChartDataEntry(x: Double(hour), y: Double(reading.psiValueNational))
+        }
+        
+        
+        var set1: BarChartDataSet! = nil
+        if let set = barChartView.data?.dataSets.first as? BarChartDataSet {
+            set1 = set
+            set1?.values = yVals
+            barChartView.data?.notifyDataChanged()
+            barChartView.notifyDataSetChanged()
+        } else {
+            set1 = BarChartDataSet(values: yVals, label: "Data Set")
+            set1.colors = ChartColorTemplates.liberty()
+            set1.drawValuesEnabled = false
+            
+            let data = BarChartData(dataSet: set1)
+            barChartView.data = data
+            barChartView.fitBars = true
+        }
+        
+        barChartView.setNeedsDisplay()
+        barChartView.animate(yAxisDuration: 1.5)
     }
     
     // MARK: - Fetching Data

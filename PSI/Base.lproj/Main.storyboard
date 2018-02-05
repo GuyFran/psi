@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,6 +50,10 @@
                                     <action selector="segmentedControlValueChanged:" destination="Db4-mX-8AT" eventType="valueChanged" id="GTy-h7-VPV"/>
                                 </connections>
                             </segmentedControl>
+                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XXV-T8-cn0" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="10" y="342" width="355" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KEb-0T-uK1" userLabel="translucent">
                                 <rect key="frame" x="9.6666666666666572" y="98" width="355" height="162"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -116,7 +121,10 @@
                             <constraint firstAttribute="bottom" secondItem="Opm-0q-pOF" secondAttribute="bottom" id="KRJ-zB-F78"/>
                             <constraint firstItem="v7c-3F-VhP" firstAttribute="leading" secondItem="cQr-Zo-Ndf" secondAttribute="leading" constant="10" id="Mbu-HX-uRQ"/>
                             <constraint firstItem="iqd-LY-8uC" firstAttribute="width" secondItem="v7c-3F-VhP" secondAttribute="width" id="Qt4-Yk-Mmh"/>
+                            <constraint firstItem="XXV-T8-cn0" firstAttribute="bottom" secondItem="Opm-0q-pOF" secondAttribute="top" constant="10" id="UgE-Db-3uH"/>
                             <constraint firstAttribute="trailing" secondItem="Opm-0q-pOF" secondAttribute="trailing" id="Uzz-ti-fDS"/>
+                            <constraint firstItem="XXV-T8-cn0" firstAttribute="trailing" secondItem="v7c-3F-VhP" secondAttribute="trailing" id="ccz-S8-Nnq"/>
+                            <constraint firstItem="XXV-T8-cn0" firstAttribute="height" secondItem="v7c-3F-VhP" secondAttribute="height" multiplier="0.3" id="dh9-Ac-oJP"/>
                             <constraint firstItem="cQr-Zo-Ndf" firstAttribute="trailing" secondItem="v7c-3F-VhP" secondAttribute="trailing" constant="10" id="e0B-p4-uOL"/>
                             <constraint firstItem="Oo7-cU-tXL" firstAttribute="centerY" secondItem="Opm-0q-pOF" secondAttribute="centerY" id="ihN-Ap-FSd"/>
                             <constraint firstItem="KEb-0T-uK1" firstAttribute="height" secondItem="v7c-3F-VhP" secondAttribute="height" id="oHh-7p-85h"/>
@@ -126,11 +134,13 @@
                             <constraint firstItem="iqd-LY-8uC" firstAttribute="height" secondItem="v7c-3F-VhP" secondAttribute="height" id="rB9-R3-g4A"/>
                             <constraint firstItem="Opm-0q-pOF" firstAttribute="leading" secondItem="6Rm-tP-sCz" secondAttribute="leading" id="vjP-3K-NHo"/>
                             <constraint firstItem="iqd-LY-8uC" firstAttribute="centerX" secondItem="v7c-3F-VhP" secondAttribute="centerX" id="xQl-yh-IYW"/>
+                            <constraint firstItem="XXV-T8-cn0" firstAttribute="leading" secondItem="v7c-3F-VhP" secondAttribute="leading" id="xiv-HK-McT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cQr-Zo-Ndf"/>
                     </view>
                     <navigationItem key="navigationItem" title="PSI Readings" id="kHd-YU-vVo"/>
                     <connections>
+                        <outlet property="barChartView" destination="XXV-T8-cn0" id="whK-ib-hMf"/>
                         <outlet property="bottomBar" destination="Opm-0q-pOF" id="mmh-6f-xi3"/>
                         <outlet property="datePicker" destination="gKx-jd-UbI" id="y04-jt-NIu"/>
                         <outlet property="dateView" destination="iqd-LY-8uC" id="0HH-8a-r0b"/>
