@@ -17,7 +17,7 @@ enum viewFormat {
     case format_24hr
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MKMapViewDelegate {
     
     //
     var viewStyle = viewFormat.format_last
@@ -34,6 +34,11 @@ class ViewController: UIViewController {
     
     var isRefreshing = false
     var isShowingDatePicker = false
+    var alreadyDrawnPins = false
+    
+    var lastReading:psiReading?
+    var readings:[psiReading]?
+    var regions = [String:CLLocationCoordinate2D]()
     
     //MARK: Outlets
     
@@ -49,6 +54,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var mapView: MKMapView! {
         didSet {
+            mapView.delegate = self
             mapView.layer.masksToBounds = true
             mapView.layer.cornerRadius = 8
             mapView.layer.borderWidth = 0.5
@@ -83,6 +89,7 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBOutlet var updateTimeTxt: UILabel!
     //
 
     //MARK: - Life Cycle
@@ -97,6 +104,14 @@ class ViewController: UIViewController {
         self.perform(#selector(showWarning), with: nil, afterDelay: 5.0)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //initial load for current values
+        self.refreshLastReading()
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -157,7 +172,11 @@ class ViewController: UIViewController {
             return
         }
         
-        showProgress()
+        if (viewStyle == .format_last) {
+            self.refreshLastReading()
+        } else {
+            self.refreshReadingsForSelectedDate()
+        }
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
@@ -178,7 +197,7 @@ class ViewController: UIViewController {
     @IBAction func datePickerValueChanged(_ sender: Any) {
     }
     
-    // MARK : UI Update
+    // MARK: -UI Update
     
     func updateUIToViewStyle() {
         
@@ -200,6 +219,71 @@ class ViewController: UIViewController {
             view?.canShowCallout = showCallOut
         }
         //
+    }
+    
+    func updateInfos() {
+        
+        //put pins on map
+        if (!alreadyDrawnPins) {
+            var annotations = [MKPointAnnotation]()
+            for region in self.regions {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = region.value
+                
+                annotation.title = self.psiStringForRegion(region: region.key)
+                annotations.append(annotation)
+            }
+            self.mapView.addAnnotations(annotations)
+            alreadyDrawnPins = true
+        }
+        
+        //update txt
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        if let readingTimestamp = lastReading?.timestamp {
+            self.updateTimeTxt.text = "update_time".localized() + ": " + formatter.string(from: readingTimestamp)
+        } else {
+            self.updateTimeTxt.text = "n.a"
+        }
+    }
+    
+    // MARK: - Fetching Data
+    func refreshLastReading() {
+        self.showProgress()
+        
+        dataHandling.loadLastPSI { (readings, regions) in
+            self.hideProgress()
+            if (readings.count == 1) {
+                self.lastReading = readings[0]
+            } else {
+                log.error("More than 1 record for last PSI!")
+            }
+            
+            self.regions = regions
+            
+            self.updateInfos()
+        }
+    }
+    
+    func refreshReadingsForSelectedDate() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateToUse = formatter.string(from: self.datePicker.date)
+        self.refreshReadingsForDate(date: dateToUse)
+    }
+    
+    func refreshReadingsForDate(date: String) {
+        self.showProgress()
+        
+        dataHandling.loadPSI(date: date) { (readings, regions) in
+            self.hideProgress()
+            self.readings = readings
+            
+            self.regions = regions
+            
+            self.updateInfos()
+        }
     }
     
     // MARK: - Animations
@@ -292,6 +376,51 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - MKDelegate
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let pinView = view as? MKPinAnnotationView
+        pinView?.pinTintColor = UIColor.red
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        let pinView = view as? MKPinAnnotationView
+        pinView?.pinTintColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        let reuseID = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKPinAnnotationView
+        if(pinView == nil) {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+            pinView?.pinTintColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        }
+        return pinView
+    }
+    
+    // MARK: - Utils
+    func psiStringForRegion(region: String) -> String {
+        switch region {
+        case "north":
+            return "north".localized() + " :\(lastReading?.psiValueNorth ?? 0)"
+        case "south":
+            return "south".localized() + " :\(lastReading?.psiValueSouth ?? 0)"
+        case "west":
+            return "west".localized() + " :\(lastReading?.psiValueWest ?? 0)"
+        case "east":
+            return "east".localized() + " :\(lastReading?.psiValueEast ?? 0)"
+        case "central":
+            return "central".localized() + " :\(lastReading?.psiValueCentral ?? 0)"
+        default:
+            return "n.a."
+        }
+    }
     
     
 }
