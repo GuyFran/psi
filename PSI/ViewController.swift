@@ -113,14 +113,11 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
             //barChartView.leftAxis.axisMinimum = 0
             //barChartView.rightAxis.axisMinimum = 0
             
-            
             barChartView.legend.enabled = false
-            
-            
         }
     }
     //
-
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,7 +129,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         
         self.perform(#selector(showWarning), with: nil, afterDelay: 5.0)
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -152,10 +149,10 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
     func setupNavBar() {
         
         /*
-        let refreshImageView = UIImageView(image: UIImage(named: "refresh.png"))
-        let calendarImageView = UIImageView(image: UIImage(named: "calendar2 copy.png"))
-        let warningImageView = UIImageView(image: UIImage(named: "warning.png"))
-        */
+         let refreshImageView = UIImageView(image: UIImage(named: "refresh.png"))
+         let calendarImageView = UIImageView(image: UIImage(named: "calendar2 copy.png"))
+         let warningImageView = UIImageView(image: UIImage(named: "warning.png"))
+         */
         
         refreshBtn = UIButton()
         refreshBtn?.setImage(UIImage(named: "refresh.png"), for: .normal)
@@ -254,7 +251,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
         }
         //
         
-    
+        
         //charts
         self.barChartView.isHidden = true
     }
@@ -288,7 +285,17 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
                 self.updateTimeTxt.text = "n.a"
             }
         } else {
+            guard let readings = self.readings else { return }
+            
             self.barChartView.isHidden = false
+            
+            if (viewStyle == .format_3hr) {
+                if (readings.count >= 3) {
+                    let newReadings = readings[readings.count - 3..<readings.count]
+                    self.readings = Array(newReadings)
+                }
+            }
+            
             self.updateChartData()
             self.updateTimeTxt.text = ""
         }
@@ -392,7 +399,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
     func hideCache() {
         self.translucentCache.isHidden = true
     }
-
+    
     
     func startRefreshAnimation() {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
