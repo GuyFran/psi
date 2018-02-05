@@ -40,6 +40,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
     var lastReading:psiReading?
     var readings:[psiReading]?
     var regions = [String:CLLocationCoordinate2D]()
+    var currentRegion:String?
     
     //MARK: Outlets
     
@@ -248,6 +249,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
             self.mapView.selectAnnotation(annotation, animated: false)
             let castedAnnotation = annotation as? MyAnnotation
             print("Selected annotation \(castedAnnotation?.region)")
+            self.currentRegion  = castedAnnotation?.region
         }
         //
         
@@ -308,7 +310,6 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
     func updateChartData() {
         guard let readings = self.readings else { return }
         
-        
         let calendar = Calendar.current
         let yVals = (0..<readings.count).map { (i) -> BarChartDataEntry in
             
@@ -316,7 +317,29 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
             guard let timestamp = reading.timestamp else { return BarChartDataEntry(x: Double(0), y: 0)}
             let hour = calendar.component(.hour, from: timestamp)
             print("hour : \(hour)")
-            return BarChartDataEntry(x: Double(hour), y: Double(reading.psiValueNational))
+            let value = { () -> Int in
+                guard let currentRegion = self.currentRegion else
+                { print("national")
+                    return reading.psiValueNational
+                }
+                
+                switch currentRegion {
+                case "north":
+                    return reading.psiValueNorth
+                case "south":
+                    return reading.psiValueSouth
+                case "east":
+                    return reading.psiValueEast
+                case "west":
+                    return reading.psiValueWest
+                case "central":
+                    return reading.psiValueCentral
+                default:
+                    return reading.psiValueNational
+                }
+                
+            }
+            return BarChartDataEntry(x: Double(hour), y: Double(value()))
         }
         
         
