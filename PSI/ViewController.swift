@@ -77,6 +77,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
     
     @IBOutlet var datePicker: UIDatePicker! {
         didSet {
+            datePicker.maximumDate = Date()
             datePicker.backgroundColor = UIColor.white
             datePicker.layer.cornerRadius = 8
             datePicker.layer.masksToBounds = true
@@ -223,6 +224,7 @@ class ViewController: UIViewController, MKMapViewDelegate, ChartViewDelegate {
     }
     
     @IBAction func datePickerValueChanged(_ sender: Any) {
+        self.refreshReadingsForSelectedDate()
     }
     
     // MARK: -UI Update
