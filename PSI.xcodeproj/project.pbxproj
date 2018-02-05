@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B31EB7C12028886E002DA8EF /* WebServicesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31EB7C02028886E002DA8EF /* WebServicesTest.swift */; };
 		B32BB7C50DAF1D246AF59CAC /* Pods_PSI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83799D3CE20D43AB6391C7F9 /* Pods_PSI.framework */; };
 		B33C844820282FFC00585F6F /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C844720282FFC00585F6F /* WebServices.swift */; };
 		B33C844B2028302700585F6F /* DataHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C844A2028302700585F6F /* DataHandling.swift */; };
@@ -47,6 +48,7 @@
 		5D03D388B62FAF428965F71C /* Pods-PSI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSI.release.xcconfig"; path = "Pods/Target Support Files/Pods-PSI/Pods-PSI.release.xcconfig"; sourceTree = "<group>"; };
 		83799D3CE20D43AB6391C7F9 /* Pods_PSI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PSI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C0AA44ACFC9BAEF365186C /* Pods_PSITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PSITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B31EB7C02028886E002DA8EF /* WebServicesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServicesTest.swift; sourceTree = "<group>"; };
 		B33C844720282FFC00585F6F /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
 		B33C844A2028302700585F6F /* DataHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandling.swift; sourceTree = "<group>"; };
 		B33C844C2028316E00585F6F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				B39332772028275F005E9B1E /* PSITests.swift */,
 				B39332792028275F005E9B1E /* Info.plist */,
+				B31EB7C02028886E002DA8EF /* WebServicesTest.swift */,
 			);
 			path = PSITests;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B31EB7C12028886E002DA8EF /* WebServicesTest.swift in Sources */,
 				B39332782028275F005E9B1E /* PSITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
