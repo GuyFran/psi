@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  PSI
+
+  Created by Guynemer on 5/2/18.
+  Copyright © 2018 SP Test. All rights reserved.
+*/
+
+
+"application_title" = "PSI Readings";
+"north" = "North";
+"south" = "South";
+"east" = "East";
+"west" = "West";
+"central" = "Central";

@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  PSI
+
+  Created by Guynemer on 5/2/18.
+  Copyright © 2018 SP Test. All rights reserved.
+*/
+
+
+"application_title" = "Releves PSI";
+"north" = "Nord";
+"south" = "Sud";
+"east" = "Est";
+"west" = "Ouest";
+"central" = "Central";
