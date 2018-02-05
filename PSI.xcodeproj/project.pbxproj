@@ -12,6 +12,7 @@
 		B33C844B2028302700585F6F /* DataHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C844A2028302700585F6F /* DataHandling.swift */; };
 		B33C84552028326700585F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B33C84532028326700585F6F /* Localizable.strings */; };
 		B33C84592028330C00585F6F /* StringsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C84582028330C00585F6F /* StringsExtension.swift */; };
+		B33C845C2028343400585F6F /* InternalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C845B2028343400585F6F /* InternalNotifications.swift */; };
 		B39332632028275F005E9B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332622028275F005E9B1E /* AppDelegate.swift */; };
 		B39332652028275F005E9B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332642028275F005E9B1E /* ViewController.swift */; };
 		B39332682028275F005E9B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39332662028275F005E9B1E /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		B33C84542028326700585F6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B33C84562028326F00585F6F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B33C84582028330C00585F6F /* StringsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsExtension.swift; sourceTree = "<group>"; };
+		B33C845B2028343400585F6F /* InternalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNotifications.swift; sourceTree = "<group>"; };
 		B393325F2028275F005E9B1E /* PSI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B39332622028275F005E9B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B39332642028275F005E9B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B33C845A2028342800585F6F /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				B33C845B2028343400585F6F /* InternalNotifications.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		B39332562028275F005E9B1E = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +143,7 @@
 		B39332612028275F005E9B1E /* PSI */ = {
 			isa = PBXGroup;
 			children = (
+				B33C845A2028342800585F6F /* Misc */,
 				B33C8457202832F600585F6F /* Extensions */,
 				B33C84492028300E00585F6F /* DataModeling */,
 				B33C844620282FE300585F6F /* APIs */,
@@ -394,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B33C844B2028302700585F6F /* DataHandling.swift in Sources */,
+				B33C845C2028343400585F6F /* InternalNotifications.swift in Sources */,
 				B39332652028275F005E9B1E /* ViewController.swift in Sources */,
 				B33C84592028330C00585F6F /* StringsExtension.swift in Sources */,
 				B39332632028275F005E9B1E /* AppDelegate.swift in Sources */,
