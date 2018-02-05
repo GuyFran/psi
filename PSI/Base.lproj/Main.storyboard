@@ -35,8 +35,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="v7c-3F-VhP">
-                                <rect key="frame" x="10" y="98" width="355" height="162"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="v7c-3F-VhP">
+                                <rect key="frame" x="10" y="98" width="355" height="30"/>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2KA-Y6-JsA">
                                 <rect key="frame" x="165.66666666666666" y="118" width="44" height="29"/>
@@ -50,17 +50,24 @@
                                     <action selector="segmentedControlValueChanged:" destination="Db4-mX-8AT" eventType="valueChanged" id="GTy-h7-VPV"/>
                                 </connections>
                             </segmentedControl>
-                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XXV-T8-cn0" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="10" y="342" width="355" height="128"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXV-T8-cn0" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="10" y="129" width="355" height="9"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KEb-0T-uK1" userLabel="translucent">
-                                <rect key="frame" x="9.6666666666666572" y="98" width="355" height="162"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEb-0T-uK1" userLabel="translucent">
+                                <rect key="frame" x="9.6666666666666572" y="98" width="355" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqd-LY-8uC" userLabel="date">
-                                <rect key="frame" x="10" y="186" width="355" height="162"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iqd-LY-8uC" userLabel="date">
+                                <rect key="frame" x="10" y="98" width="355" height="30"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBa-Uh-iD0">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="backgroundClicked:" destination="Db4-mX-8AT" eventType="touchUpInside" id="sAU-m7-yL2"/>
+                                        </connections>
+                                    </button>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="gKx-jd-UbI">
                                         <rect key="frame" x="18" y="60" width="320" height="216"/>
                                         <date key="date" timeIntervalSinceReferenceDate="539518317.87288594">
@@ -76,12 +83,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.55292727623456794" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="YBa-Uh-iD0" secondAttribute="trailing" id="K4L-R1-Tho"/>
+                                    <constraint firstItem="YBa-Uh-iD0" firstAttribute="top" secondItem="iqd-LY-8uC" secondAttribute="top" id="Q10-Qb-P3G"/>
                                     <constraint firstItem="gKx-jd-UbI" firstAttribute="top" secondItem="iqd-LY-8uC" secondAttribute="top" constant="60" id="RNH-Vp-cMa"/>
+                                    <constraint firstItem="YBa-Uh-iD0" firstAttribute="leading" secondItem="iqd-LY-8uC" secondAttribute="leading" id="b4q-P2-iJu"/>
                                     <constraint firstItem="gKx-jd-UbI" firstAttribute="centerX" secondItem="iqd-LY-8uC" secondAttribute="centerX" id="qrk-xv-d9I"/>
+                                    <constraint firstAttribute="bottom" secondItem="YBa-Uh-iD0" secondAttribute="bottom" id="yjY-Gj-dN8"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Opm-0q-pOF" userLabel="bottomBar">
-                                <rect key="frame" x="0.0" y="270" width="375" height="44"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Opm-0q-pOF" userLabel="bottomBar">
+                                <rect key="frame" x="0.0" y="138" width="375" height="674"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="lw6-iJ-5EA"/>
                                     <constraint firstAttribute="height" constant="34" id="rfi-1a-scT"/>
@@ -103,8 +114,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oo7-cU-tXL">
-                                <rect key="frame" x="187.66666666666666" y="285.33333333333337" width="0.0" height="14.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oo7-cU-tXL">
+                                <rect key="frame" x="187.66666666666666" y="475.66666666666669" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
