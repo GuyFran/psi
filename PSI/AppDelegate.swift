@@ -8,8 +8,10 @@
 
 import UIKit
 import SwiftyBeaver
+import Cache
 
 let log = SwiftyBeaver.self
+var storage:Storage?
 
 @UIApplicationMain
 
@@ -62,6 +64,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let console = ConsoleDestination()
         console.format = "$DHH:mm:ss$d $L $M"
         log.addDestination(console)
+        
+        //setting cache storage
+        let diskConfig = DiskConfig(name: "savedPSI")
+        do {
+            storage = try Storage(diskConfig: diskConfig)
+        } catch {
+            log.error(error)
+        }
     }
     
 }
