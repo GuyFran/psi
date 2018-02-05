@@ -29,7 +29,7 @@
         <!--PSI Readings-->
         <scene sceneID="LL7-Yr-BOk">
             <objects>
-                <viewController title="PSI Readings" id="Db4-mX-8AT" sceneMemberID="viewController">
+                <viewController title="PSI Readings" id="Db4-mX-8AT" customClass="ViewController" customModule="PSI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Rm-tP-sCz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
