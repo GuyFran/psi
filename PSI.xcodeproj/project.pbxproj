@@ -13,6 +13,7 @@
 		B33C84552028326700585F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B33C84532028326700585F6F /* Localizable.strings */; };
 		B33C84592028330C00585F6F /* StringsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C84582028330C00585F6F /* StringsExtension.swift */; };
 		B33C845C2028343400585F6F /* InternalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C845B2028343400585F6F /* InternalNotifications.swift */; };
+		B33C845E202836AD00585F6F /* psiReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C845D202836AD00585F6F /* psiReading.swift */; };
 		B39332632028275F005E9B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332622028275F005E9B1E /* AppDelegate.swift */; };
 		B39332652028275F005E9B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332642028275F005E9B1E /* ViewController.swift */; };
 		B39332682028275F005E9B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39332662028275F005E9B1E /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		B33C84562028326F00585F6F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B33C84582028330C00585F6F /* StringsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsExtension.swift; sourceTree = "<group>"; };
 		B33C845B2028343400585F6F /* InternalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNotifications.swift; sourceTree = "<group>"; };
+		B33C845D202836AD00585F6F /* psiReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = psiReading.swift; sourceTree = "<group>"; };
 		B393325F2028275F005E9B1E /* PSI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B39332622028275F005E9B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B39332642028275F005E9B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				B33C844A2028302700585F6F /* DataHandling.swift */,
+				B33C845D202836AD00585F6F /* psiReading.swift */,
 			);
 			path = DataModeling;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				B33C845C2028343400585F6F /* InternalNotifications.swift in Sources */,
 				B39332652028275F005E9B1E /* ViewController.swift in Sources */,
 				B33C84592028330C00585F6F /* StringsExtension.swift in Sources */,
+				B33C845E202836AD00585F6F /* psiReading.swift in Sources */,
 				B39332632028275F005E9B1E /* AppDelegate.swift in Sources */,
 				B33C844820282FFC00585F6F /* WebServices.swift in Sources */,
 			);
