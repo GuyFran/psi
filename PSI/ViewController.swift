@@ -8,6 +8,8 @@
 
 import UIKit
 
+let webservices = WebServices()
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -15,6 +17,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.navigationItem.title = "application_title".localized()
+        webservices.getPSI(date: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {

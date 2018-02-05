@@ -27,6 +27,30 @@ class WebServices {
             postNotification(name: apiCallFailed)
             return
         }
+        
+        //the possible date to provide
+        var parameters = [String:Any]()
+        if let date = date {
+            parameters = ["date":date]
+        }
+        
+        Alamofire.request(apiURL, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: self.buildHeader()).responseSwiftyJSON { (dataResponse) in
+            
+            
+            switch dataResponse.result {
+            case .failure(let error):
+                log.error("getPSI API Call failed : \(error.localizedDescription)")
+                
+                
+                postNotification(name: apiCallFailed)
+                return
+            case .success(let json):
+                
+                print("JSON: \(json)")
+                
+                
+            }
+        }
     }
     
     
