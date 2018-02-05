@@ -11,9 +11,17 @@ import MapKit
 
 let dataHandling = DataHandling()
 
+enum viewFormat {
+    case format_last
+    case format_3hr
+    case format_24hr
+}
+
 class ViewController: UIViewController {
     
     //
+    var viewStyle = viewFormat.format_last
+    
     let refreshImageView = UIImageView(image: UIImage(named: "refresh.png"))
     let calendarImageView = UIImageView(image: UIImage(named: "calendar2 copy.png"))
     let warningImageView = UIImageView(image: UIImage(named: "warning.png"))
@@ -153,9 +161,45 @@ class ViewController: UIViewController {
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            viewStyle = .format_last
+        case 1:
+            viewStyle = .format_3hr
+        case 2:
+            viewStyle = .format_24hr
+            
+        default:
+            break
+        }
+        self.updateUIToViewStyle()
     }
     
     @IBAction func datePickerValueChanged(_ sender: Any) {
+    }
+    
+    // MARK : UI Update
+    
+    func updateUIToViewStyle() {
+        
+        //deselect all annotations when click on seg control
+        let selected = self.mapView.selectedAnnotations
+        for annotation in selected {
+            self.mapView.deselectAnnotation(annotation, animated: true)
+        }
+        //
+        
+        //check if call out is allowed or not, set accordingly
+        var showCallOut = true
+        
+        if viewStyle != .format_last {
+            showCallOut = false
+        }
+        for annotation in mapView.annotations {
+            let view = self.mapView.view(for: annotation)
+            view?.canShowCallout = showCallOut
+        }
+        //
     }
     
     // MARK: - Animations
@@ -246,16 +290,6 @@ class ViewController: UIViewController {
             self.dateView.isHidden = true
             self.isShowingDatePicker = false
         }
-//
-//
-//        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.0, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
-//            //
-//            self.dateView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-//        }) { (completed) in
-//            //
-//            self.dateView.isHidden = true
-//            self.isShowingDatePicker = false
-//        }
     }
     
     
