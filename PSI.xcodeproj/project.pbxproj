@@ -20,6 +20,7 @@
 		B33C846B202855FB00585F6F /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = B33C8465202855FA00585F6F /* cross.png */; };
 		B33C846D202855FB00585F6F /* calendar2 copy.png in Resources */ = {isa = PBXBuildFile; fileRef = B33C8467202855FA00585F6F /* calendar2 copy.png */; };
 		B33C846F202855FB00585F6F /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = B33C8469202855FA00585F6F /* refresh.png */; };
+		B33C8471202874EC00585F6F /* MyAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C8470202874EC00585F6F /* MyAnnotation.swift */; };
 		B39332632028275F005E9B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332622028275F005E9B1E /* AppDelegate.swift */; };
 		B39332652028275F005E9B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332642028275F005E9B1E /* ViewController.swift */; };
 		B39332682028275F005E9B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39332662028275F005E9B1E /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		B33C8465202855FA00585F6F /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		B33C8467202855FA00585F6F /* calendar2 copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar2 copy.png"; sourceTree = "<group>"; };
 		B33C8469202855FA00585F6F /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		B33C8470202874EC00585F6F /* MyAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyAnnotation.swift; path = Custom/MyAnnotation.swift; sourceTree = "<group>"; };
 		B393325F2028275F005E9B1E /* PSI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B39332622028275F005E9B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B39332642028275F005E9B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				B393326B2028275F005E9B1E /* LaunchScreen.storyboard */,
 				B393326E2028275F005E9B1E /* Info.plist */,
 				B33C84532028326700585F6F /* Localizable.strings */,
+				B33C8470202874EC00585F6F /* MyAnnotation.swift */,
 			);
 			path = PSI;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 			files = (
 				B33C844B2028302700585F6F /* DataHandling.swift in Sources */,
 				B33C8460202843E400585F6F /* DateExtension.swift in Sources */,
+				B33C8471202874EC00585F6F /* MyAnnotation.swift in Sources */,
 				B33C845C2028343400585F6F /* InternalNotifications.swift in Sources */,
 				B39332652028275F005E9B1E /* ViewController.swift in Sources */,
 				B33C84592028330C00585F6F /* StringsExtension.swift in Sources */,
