@@ -14,6 +14,7 @@
 		B33C84592028330C00585F6F /* StringsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C84582028330C00585F6F /* StringsExtension.swift */; };
 		B33C845C2028343400585F6F /* InternalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C845B2028343400585F6F /* InternalNotifications.swift */; };
 		B33C845E202836AD00585F6F /* psiReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C845D202836AD00585F6F /* psiReading.swift */; };
+		B33C8460202843E400585F6F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C845F202843E400585F6F /* DateExtension.swift */; };
 		B39332632028275F005E9B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332622028275F005E9B1E /* AppDelegate.swift */; };
 		B39332652028275F005E9B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39332642028275F005E9B1E /* ViewController.swift */; };
 		B39332682028275F005E9B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39332662028275F005E9B1E /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		B33C84582028330C00585F6F /* StringsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsExtension.swift; sourceTree = "<group>"; };
 		B33C845B2028343400585F6F /* InternalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNotifications.swift; sourceTree = "<group>"; };
 		B33C845D202836AD00585F6F /* psiReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = psiReading.swift; sourceTree = "<group>"; };
+		B33C845F202843E400585F6F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		B393325F2028275F005E9B1E /* PSI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B39332622028275F005E9B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B39332642028275F005E9B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				B33C84582028330C00585F6F /* StringsExtension.swift */,
+				B33C845F202843E400585F6F /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-PSI/Pods-PSI-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
@@ -356,6 +360,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
@@ -408,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B33C844B2028302700585F6F /* DataHandling.swift in Sources */,
+				B33C8460202843E400585F6F /* DateExtension.swift in Sources */,
 				B33C845C2028343400585F6F /* InternalNotifications.swift in Sources */,
 				B39332652028275F005E9B1E /* ViewController.swift in Sources */,
 				B33C84592028330C00585F6F /* StringsExtension.swift in Sources */,
