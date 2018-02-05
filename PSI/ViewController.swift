@@ -183,11 +183,13 @@ class ViewController: UIViewController, MKMapViewDelegate {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             viewStyle = .format_last
+            self.refreshLastReading()
         case 1:
             viewStyle = .format_3hr
+            self.refreshReadingsForSelectedDate()
         case 2:
             viewStyle = .format_24hr
-            
+            self.refreshReadingsForSelectedDate()
         default:
             break
         }
@@ -201,12 +203,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     func updateUIToViewStyle() {
         
-        //deselect all annotations when click on seg control
-        let selected = self.mapView.selectedAnnotations
-        for annotation in selected {
-            self.mapView.deselectAnnotation(annotation, animated: true)
-        }
-        //
+        
         
         //check if call out is allowed or not, set accordingly
         var showCallOut = true
@@ -219,18 +216,29 @@ class ViewController: UIViewController, MKMapViewDelegate {
             view?.canShowCallout = showCallOut
         }
         //
+        
+        //force refrsh annotation
+        let selected = self.mapView.selectedAnnotations
+        for annotation in selected {
+            self.mapView.deselectAnnotation(annotation, animated: false)
+            self.mapView.selectAnnotation(annotation, animated: false)
+            let castedAnnotation = annotation as? MyAnnotation
+            print("Selected annotation \(castedAnnotation?.region)")
+        }
+        //
     }
     
     func updateInfos() {
         
         //put pins on map
         if (!alreadyDrawnPins) {
-            var annotations = [MKPointAnnotation]()
+            var annotations = [MyAnnotation]()
             for region in self.regions {
-                let annotation = MKPointAnnotation()
+                let annotation = MyAnnotation()
                 annotation.coordinate = region.value
                 
                 annotation.title = self.psiStringForRegion(region: region.key)
+                annotation.region = region.key
                 annotations.append(annotation)
             }
             self.mapView.addAnnotations(annotations)
