@@ -36,7 +36,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="cQr-Zo-Ndf"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kHd-YU-vVo"/>
+                    <navigationItem key="navigationItem" title="PSI Readings" id="kHd-YU-vVo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wM4-e8-SFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
